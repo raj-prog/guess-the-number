@@ -1,6 +1,5 @@
 'use strict';
 
-// document.querySelector('.number').textContent = 10;
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 
 let score = 20;
@@ -8,8 +7,10 @@ let highScore = 0;
 
 document.querySelector('.check').addEventListener('click', function () {
   const guess = Number(document.querySelector('.guess').value);
+  // when guess is NaN
   if (!guess) {
     document.querySelector('.message').textContent = 'No Number';
+    // when guess is too high or too low
   } else if (guess !== secretNumber) {
     if (score > 1) {
       document.querySelector('.message').textContent =
@@ -38,12 +39,15 @@ document.querySelector('.check').addEventListener('click', function () {
     //     document.querySelector('.message').textContent = 'You lost the game';
     //     document.querySelector('.score').textContent = 0;
     //   }
+
+    // when player wins
   } else if (guess === secretNumber) {
     document.querySelector('.message').textContent = 'Correct Answer';
     document.querySelector('.number').textContent = secretNumber;
     document.querySelector('body').style.backgroundColor = '#60b347';
     document.querySelector('.number').style.width = '30rem';
 
+    //Updating highscore
     if (score > highScore) {
       highScore = score;
       document.querySelector('.highscore').textContent = highScore;
@@ -51,6 +55,7 @@ document.querySelector('.check').addEventListener('click', function () {
   }
 });
 
+// Implementing reset button
 document.querySelector('.again').addEventListener('click', function () {
   score = 20;
   document.querySelector('.score').textContent = score;
